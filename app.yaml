@@ -1,0 +1,25 @@
+application: vierchanbot
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+# Uncomment to enable online console:
+#- url: /admin/.*
+#  script: google.appengine.ext.admin.application
+#  login: admin
+- url: /tasks/update_cache
+  script: main.app
+  login: admin
+# Order matters! This must be last for the above to work.
+- url: .*
+  script: main.app
+  # secure: always
+
+
+libraries:
+- name: jinja2
+  version: "2.6"
+- name: markupsafe
+  version: "0.15"
